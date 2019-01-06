@@ -16,10 +16,10 @@
   ];
 
   ### Use the systemd-boot EFI boot loader
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  networking.hostName = "large-horse-collider"; # Define your hostname.
+  #boot.loader.systemd-boot.enable = true;
+  #boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.grub.device = "/dev/sda";
+  networking.hostName = "small-horse-collider"; # Define your hostname.
   networking.networkmanager.enable = true;
   networking.networkmanager.packages = [ pkgs.networkmanagerapplet ];
 
@@ -66,17 +66,17 @@ export TERM=rxvt-unicode
     xkbVariant = "deadgraveacute";
 
     ### Touchpad support
-    libinput.enable = true;
-    #synaptics.enable = true;
+    #libinput.enable = true;
+    synaptics.enable = true;
 
     ### Display manager
     ## slim
-    displayManager = {
-      slim.theme = pkgs.fetchurl {
-        url = http://marvid.fr/~eeva/mirror/slim-theme-solarized-debian.tar.bz2;
-        sha256 = "e792886a39b97bed0cb1022bec381806b0ca1dcc726b093187231bd1902acd49";
-      };
-    };
+    #displayManager = {
+    #  slim.theme = pkgs.fetchurl {
+    #    url = http://marvid.fr/~eeva/mirror/slim-theme-solarized-debian.tar.bz2;
+    #    sha256 = "e792886a39b97bed0cb1022bec381806b0ca1dcc726b093187231bd1902acd49";
+    #  };
+    #};
     #displayManager.slim = {
     #  autoLogin = false;
     #  defaultUser = "lcd";
@@ -99,10 +99,10 @@ export TERM=rxvt-unicode
     ## xcfe
     #services.xserver.desktopManager.xfce.enable = true;
     #services.xserver.desktopManager.default = "xfce";
-    desktopManager.default = "xfce";
-    desktopManager.xfce.enable = true;
-    desktopManager.xfce.noDesktop = true;
-    desktopManager.xfce.enableXfwm = false;
+    #desktopManager.default = "xfce";
+    #desktopManager.xfce.enable = true;
+    #desktopManager.xfce.noDesktop = true;
+    #desktopManager.xfce.enableXfwm = false;
 
     ## Mate
     desktopManager.mate.enable = true;
@@ -112,19 +112,19 @@ export TERM=rxvt-unicode
     desktopManager.xterm.enable = false;
 
     ### Window manager
-    windowManager.i3 = {
-      enable = true;
-      package = pkgs.i3-gaps;
-      extraPackages = with pkgs; [
-        i3
-        rofi
-        i3status
-        i3lock
-      ];
-    };
+    #windowManager.i3 = {
+    #  enable = true;
+    #  package = pkgs.i3-gaps;
+    #  extraPackages = with pkgs; [
+    #    i3
+    #    rofi
+    #    i3status
+    #    i3lock
+    #  ];
+    #};
 
     ## openbox
-    windowManager.openbox.enable = true;
+    #windowManager.openbox.enable = true;
 
     ## xmonad
     #windowManager.xmonad = {
@@ -167,7 +167,7 @@ export TERM=rxvt-unicode
   environment.systemPackages = with pkgs; [
     #nox # nixos package search
 
-    mate.caja
+    #mate.caja
     ntfs3g # writable ntfs mounts
     #service-wrapper
     htop
@@ -186,7 +186,7 @@ export TERM=rxvt-unicode
     playerctl
     spotify
     #cmus
-    mpd
+    #mpd
     #mpc_cli
     #sonata # mpd client
 
@@ -200,8 +200,8 @@ export TERM=rxvt-unicode
     #mariadb
     #mysql-workbench
 
-    gimp
-    inkscape
+    #gimp
+    #inkscape
     #nomacs
     #feh
     #viewnior # ugly scrollbars :(
@@ -209,14 +209,14 @@ export TERM=rxvt-unicode
     keepass
     truecrypt
 
-    i3
+    #i3
     #openbox
     #twmn
     #dmenu
     #i3status
     #i3lock
     #i3blocks # need for mplayer + mpd?
-    polybar
+    #polybar
     /*(polybar.override {
       alsaSupport = true;
       i3Support = true;
@@ -225,7 +225,7 @@ export TERM=rxvt-unicode
       #githubSupport = true;
       #mpdSupport = true;
     })*/
-    lsof # for ssh session display
+    #lsof # for ssh session display
     #nitrogen
   ];
 
@@ -254,18 +254,19 @@ export TERM=rxvt-unicode
   };
 
   nixpkgs.config = {
+    allowUnfree = true;
     packageOverrides = pkgs: with pkgs; {
       pidgin-with-plugins = pkgs.pidgin-with-plugins.override {
         plugins = [ telegram-purple purple-discord purple-hangouts purple-facebook slack ];
       };
 
-      polybar = pkgs.polybar.override {
-        alsaSupport = true;
-        i3Support = true;
-        #iwSupport = true;
-        #githubSupport = true;
-        mpdSupport = true;
-      };
+      #polybar = pkgs.polybar.override {
+      #  alsaSupport = true;
+      #  i3Support = true;
+      #  #iwSupport = true;
+      #  #githubSupport = true;
+      #  mpdSupport = true;
+      #};
     };
   };
 
@@ -318,6 +319,6 @@ export TERM=rxvt-unicode
   virtualisation.docker.enable = true;
   virtualisation.docker.enableOnBoot = true;
 
-  services.printing.enable = true;
-  services.printing.drivers = [ pkgs.hplip ];
+  #services.printing.enable = true;
+  #services.printing.drivers = [ pkgs.hplip ];
 }

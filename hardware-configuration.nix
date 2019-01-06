@@ -8,46 +8,23 @@
     [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "ahci" "firewire_ohci" "sd_mod" "sr_mod" "sdhci_pci" ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  # SSD optimization?
-  #boot.kernel.sysctl {
-  #  "vm.swappiness" = 90;
-  #};
-
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/40238ada-6f09-40ea-87b8-c076082c1234";
+    { device = "/dev/disk/by-uuid/7cc07a00-e340-460c-82ec-52afacbe72ba";
       fsType = "ext4";
     };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/9D18-7EA3";
+  fileSystems."/mmc" =
+    { device = "/dev/disk/by-uuid/7C5B-9051";
       fsType = "vfat";
     };
 
-  swapDevices = [ ];
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/70b04ad7-ee43-4502-937b-16da8b59df32"; }
+    ];
 
-  nix.maxJobs = lib.mkDefault 8;
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-
-  hardware.cpu.intel.updateMicrocode = true;
-  #hardware.cpu.amd.updateMicrocode = true;
-
-  hardware.bluetooth.enable = false;
-
-  # Enable sound.
-  sound.enable = true;
-  #sound.mediaKeys.enable
-  hardware.pulseaudio.enable = true;
-  #hardware.pulseaudio.package = pulse;
-
-  nixpkgs.config = {
-    allowUnfree = true;
-  };
-
-  services.xserver = {
-    videoDrivers = ["nvidia"];
-  };
+  nix.maxJobs = lib.mkDefault 2;
 }
