@@ -271,6 +271,9 @@ exec --no-startup-id systemctl --user start redshift-g
 #  }
 #}
 
+# Load custom terminal theme
+exec_always --no-startup-id xrdb -merge ~/.Xresources
+
 # launch polybar
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id pkill polybar || polybar example
