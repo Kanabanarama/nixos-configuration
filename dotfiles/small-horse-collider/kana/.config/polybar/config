@@ -29,6 +29,7 @@ alert = #bd2c40
 
 [bar/example]
 #monitor = ${env:MONITOR:HDMI-0}
+monitor = ${env:MONITOR:LVDS}
 width = 100%
 height = 27
 ;offset-x = 1%
@@ -59,9 +60,9 @@ font-3 = Weather Icons:size=14;1
 
 modules-left = wideworkspaces info-ssh-sessions apps
 modules-center = title
-modules-right = filesystem alsa xkeyboard memory cpu bluetooth wlan eth temperature xbacklight battery date powermenu
+modules-right = filesystem alsa xkeyboard memory cpu bluetooth temperature battery date powermenu
 
-# xbacklight battery poweroff
+# xbacklight battery poweroff wlan eth
 
 tray-position = right
 tray-padding = 2

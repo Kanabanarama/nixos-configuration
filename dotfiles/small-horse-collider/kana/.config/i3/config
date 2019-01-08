@@ -272,5 +272,6 @@ exec --no-startup-id systemctl --user start redshift-g
 #}
 
 # launch polybar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id pkill polybar || polybar example
 
