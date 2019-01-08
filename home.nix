@@ -26,7 +26,7 @@
 
   #home.path.".config/polybar".source = "/etc/nixos/dotfiles/small-horse-collider/kana/.config/polybar"; # ???
   home.file.".config/polybar/config".source = "/etc/nixos/dotfiles/small-horse-collider/kana/.config/polybar/config";
-  home.file.".config/polybar/polybar-scripts/info-ssh-sessions.sh".source = "/etc/nixos/dotfiles/small-horse-collider/kana/.config/polybar/polybar-scripts/info-ssh-sessions";
+  home.file.".config/polybar/polybar-scripts/info-ssh-sessions.sh".source = "/etc/nixos/dotfiles/small-horse-collider/kana/.config/polybar/polybar-scripts/info-ssh-sessions.sh";
 
   home.file.".Xresources".source = "/etc/nixos/dotfiles/small-horse-collider/kana/.Xresources";
 
