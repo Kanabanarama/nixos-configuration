@@ -17,10 +17,10 @@
       fsType = "ext4";
     };
 
-  fileSystems."/mmc" =
-    { device = "/dev/disk/by-uuid/7C5B-9051";
-      fsType = "vfat";
-    };
+  #fileSystems."/mmc" =
+  #  { device = "/dev/disk/by-uuid/7C5B-9051";
+  #    fsType = "vfat";
+  #  };
 
   swapDevices =
     [ { device = "/dev/disk/by-uuid/70b04ad7-ee43-4502-937b-16da8b59df32"; }
