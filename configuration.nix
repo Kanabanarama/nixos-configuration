@@ -13,7 +13,14 @@
   imports =
   [
     ./hardware-configuration.nix # Include the results of the hardware scan.
+    "${builtins.fetchTarball https://github.com/rycee/home-manager/archive/master.tar.gz}/nixos"
   ];
+
+  home-manager.users.kana = import ./home.nix;
+
+  #home-manager.users.kana = {
+  #  home.file.".config/i3/config".source = "/etc/nixos/dotfiles/small-horse-collider/kana/.config/i3/config";
+  #};
 
   ### Use the systemd-boot EFI boot loader
   #boot.loader.systemd-boot.enable = true;
@@ -112,16 +119,16 @@ export TERM=rxvt-unicode
     desktopManager.xterm.enable = false;
 
     ### Window manager
-    #windowManager.i3 = {
-    #  enable = true;
-    #  package = pkgs.i3-gaps;
-    #  extraPackages = with pkgs; [
-    #    i3
-    #    rofi
-    #    i3status
-    #    i3lock
-    #  ];
-    #};
+    windowManager.i3 = {
+      enable = true;
+      package = pkgs.i3-gaps;
+      extraPackages = with pkgs; [
+        i3
+        rofi
+        i3status
+        i3lock
+      ];
+    };
 
     ## openbox
     #windowManager.openbox.enable = true;
@@ -209,14 +216,14 @@ export TERM=rxvt-unicode
     keepass
     truecrypt
 
-    #i3
+    i3
     #openbox
     #twmn
     #dmenu
     #i3status
     #i3lock
     #i3blocks # need for mplayer + mpd?
-    #polybar
+    polybar
     /*(polybar.override {
       alsaSupport = true;
       i3Support = true;
@@ -225,7 +232,7 @@ export TERM=rxvt-unicode
       #githubSupport = true;
       #mpdSupport = true;
     })*/
-    #lsof # for ssh session display
+    lsof # for ssh session display
     #nitrogen
   ];
 
