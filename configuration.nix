@@ -174,13 +174,14 @@ export TERM=rxvt-unicode
   environment.systemPackages = with pkgs; [
     #nox # nixos package search
 
-    #mate.caja
-    ntfs3g # writable ntfs mounts
-    #service-wrapper
+    rxvt_unicode
     htop
     curl
     wget
     #bind
+    mate.caja
+    ntfs3g # writable ntfs mounts
+    #service-wrapper
 
     firefox
     chromium
