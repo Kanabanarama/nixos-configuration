@@ -23,6 +23,9 @@ font pango:System San Francisco Display 10
 #set $inactive-text-color #676E7D
 #set $urgent-bg-color 	 #E53935
 
+### Don't focus on hovering over containers
+focus_follows_mouse no
+
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -132,10 +135,6 @@ workspace $ws4 output $monitor_left
 workspace $ws5 output $monitor_center
 workspace $ws6 output $monitor_right
 
-#set $ws1 "🐱"
-#set $ws2 "☕"
-#set $ws3 "🐱☕"
-
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -149,7 +148,7 @@ bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
 # switch to workspace PAIR
-bindsym $mod+Shift+Plus workspace $ws1 
+bindsym $mod+Shift+Plus workspace $ws1
 bindsym $mod+Shift+Minus workspace $ws2
 
 # move focused container to workspace
@@ -213,7 +212,8 @@ bindsym XF86AudioNext exec playerctl -p spotify next
 bindsym XF86AudioPrev exec playerctl -p spotify previous
 
 # file manager shortcut
-bindsym $mod+BackSpace exec --no-startup-id "caja"
+bindsym $mod+BackSpace exec --no-startup-id "caja --no-desktop"
+exec --no-startup-id dconf write /org/mate/desktop/background/show-desktop-icons false
 
 # them interwebs
 bindsym $mod+Delete exec --no-startup-id "chromium"
@@ -275,6 +275,4 @@ exec --no-startup-id systemctl --user start redshift-g
 exec_always --no-startup-id xrdb -merge ~/.Xresources
 
 # launch polybar
-#exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id pkill polybar || polybar example
-

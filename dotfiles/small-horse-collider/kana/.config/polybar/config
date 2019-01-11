@@ -28,7 +28,6 @@ secondary = #e60053
 alert = #bd2c40
 
 [bar/example]
-#monitor = ${env:MONITOR:HDMI-0}
 monitor = ${env:MONITOR:LVDS}
 width = 100%
 height = 27
@@ -60,9 +59,7 @@ font-3 = Weather Icons:size=14;1
 
 modules-left = wideworkspaces info-ssh-sessions apps
 modules-center = title
-modules-right = filesystem alsa xkeyboard memory cpu bluetooth temperature battery date powermenu
-
-# xbacklight battery poweroff wlan eth
+modules-right = filesystem alsa xkeyboard memory cpu bluetooth wlan eth temperature xbacklight battery date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -204,13 +201,13 @@ enable-scroll = false
 ; Default: true
 wrapping-scroll = false
 
-; Set the scroll cycle direction 
+; Set the scroll cycle direction
 ; Default: true
 reverse-scroll = false
 
-; Use fuzzy (partial) matching on labels when assigning 
+; Use fuzzy (partial) matching on labels when assigning
 ; icons to workspaces
-; Example: code;♚ will apply the icon to all workspaces 
+; Example: code;♚ will apply the icon to all workspaces
 ; containing 'code' in the label
 ; Default: false
 fuzzy-match = true
@@ -601,7 +598,7 @@ ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
 
-tray-padding = 2 
+tray-padding = 2
 tray-transparent = true
 true tray-background = #0063ff
 
@@ -873,4 +870,3 @@ format = <label>
 ;   %notifications% (default)
 ; Default: Notifications: %notifications%
 label = %notifications%
-
